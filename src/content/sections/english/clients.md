@@ -2,6 +2,8 @@
 enable: true # Control the visibility of this section across all pages where it is used
 title: ""
 
+description: "Companies that have trusted us"
+
 list:
   - alt: "example alt text"
     src: "/images/clients/1.svg"

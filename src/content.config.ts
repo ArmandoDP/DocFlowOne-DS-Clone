@@ -13,7 +13,7 @@ export const page = z.object({
   author: z.string().optional(),
   categories: z.array(z.string()).default(["others"]).optional(),
   tags: z.array(z.string()).default(["others"]).optional(),
-  date: z.date().optional(), // example date format 2022-01-01 or 2022-01-01T00:00:00+00:00 (Year-Month-Day Hour:Minute:Second+Timezone)
+  date: z.date().optional(),
   description: z.string().optional(),
   image: z.string().optional(),
   draft: z.boolean().optional(),
@@ -27,7 +27,6 @@ export const page = z.object({
   canonical: z.string().optional(),
   keywords: z.array(z.string()).optional(),
   disableTagline: z.boolean().optional(),
-  ...sectionsSchema,
 });
 
 // Pages collection schema

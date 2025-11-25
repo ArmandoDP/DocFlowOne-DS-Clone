@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { defineCollection } from "astro:content";
 
 export const sharedButton = z
   .object({
@@ -96,6 +97,140 @@ export const inputFieldSchema = z.object({
 // SECTIONS SCHEMA
 // ================================================================================
 
+export const BenefitsSectionSchema = z
+  .object({
+    enable: z.boolean().default(false).optional(), // Control section visibility
+    title: z.string().optional(),
+    benefits: z
+      .array(
+        z.object({
+          icon: z.string(),
+          title: z.string(),
+          description: z.string(),
+        }),
+      )
+      .optional(),
+  })
+  .optional();
+
+export const DocflowOneSectionSchema = z
+  .object({
+    enable: z.boolean().default(true).optional(),
+
+    title: z.string().optional(),
+    intro: z.string().optional(),
+    ctaLabel: z.string().optional(),
+
+    sections: z.array(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        subtitle: z.string().optional(),
+        aiIcon: z.string().optional(),
+        images: z.array(z.string()).optional(),
+
+        // Para secciones normales (cards)
+        cards: z
+          .array(
+            z.object({
+              icon: z.string(),
+              title: z.string(),
+              description: z.string(),
+            }),
+          )
+          .optional(),
+
+        // Para la sección Gestión Documental
+        cardsTop: z
+          .array(
+            z.object({
+              icon: z.string(),
+              title: z.string(),
+              description: z.string(),
+            }),
+          )
+          .optional(),
+
+        cardsBottom: z
+          .array(
+            z.object({
+              icon: z.string(),
+              title: z.string(),
+              description: z.string(),
+            }),
+          )
+          .optional(),
+      }),
+    ),
+  })
+  .optional();
+
+export const TestimonialsSectionSchema = z
+  .object({
+    enable: z.boolean().default(false).optional(),
+    title: z.string().optional(),
+    description: z.string().optional(),
+    ctaLabel: z.string().optional(),
+    subtitle: z.string().optional(),
+
+    testimonial: z
+      .object({
+        quote: z.string(),
+        author: z.string(),
+        role: z.string(),
+      })
+      .optional(),
+
+    stats: z
+      .array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+        }),
+      )
+      .optional(),
+  })
+  .optional();
+
+export const footerSectionSchema = z.object({
+  enable: z.boolean().default(true),
+
+  top: z.object({
+    title: z.string(),
+    description: z.string(),
+    buttonLabel: z.string(),
+  }),
+
+  columns: z.array(
+    z.object({
+      title: z.string(),
+      links: z.array(
+        z.object({
+          label: z.string(),
+          url: z.string(),
+        }),
+      ),
+    }),
+  ),
+
+  social: z
+    .array(
+      z.object({
+        icon: z.string(),
+        url: z.string(),
+      }),
+    )
+    .optional(),
+
+  bottom: z.object({
+    copyright: z.string(),
+    privacy: z.string(),
+    privacyUrl: z.string(),
+    terms: z.string(),
+    termsUrl: z.string(),
+  }),
+});
+
 export const pricingSectionSchema = z
   .object({
     enable: z.boolean().default(false),
@@ -172,6 +307,17 @@ export const bannerAgencySectionSchema = z
     enable: z.boolean().default(false).optional(),
     titleSize: z.enum(["display-1", "display-2", "display-3"]).optional(),
     title: z.array(z.string()).optional(),
+    image: z.string().optional(),
+    video: z
+      .object({
+        enable: z.boolean().default(false).optional(),
+        src: z.string().optional(),
+        autoplay: z.boolean().default(false).optional(),
+        loop: z.boolean().default(false).optional(),
+        muted: z.boolean().default(false).optional(),
+        playsinline: z.boolean().default(false).optional(),
+      })
+      .optional(),
     badge: z
       .object({
         enable: z.boolean().default(false).optional(),
@@ -188,4 +334,8 @@ export const sectionsSchema = {
   clientsSection: clientsSectionSchema,
   bannerAgencySection: bannerAgencySectionSchema,
   pricingSection: pricingSectionSchema,
+  benefitsSection: BenefitsSectionSchema,
+  docflowOneSection: DocflowOneSectionSchema,
+  testimonialsSection: TestimonialsSectionSchema,
+  footerSection: footerSectionSchema,
 };

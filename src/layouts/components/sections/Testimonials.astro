@@ -1,0 +1,97 @@
+---
+import type { z } from "astro:content";
+import type { Section } from "@/types";
+import { getEntryCTM } from "@/lib/customContentLoader.astro";
+import overrideObjects from "@/lib/utils/overrideObjects";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { TestimonialsSectionSchema } from "@/sections.schema";
+
+type TestimonialsSection = Section & z.infer<typeof TestimonialsSectionSchema>;
+
+type Props = {
+  content?: TestimonialsSection;
+};
+
+let defaultContent =
+  (await getEntryCTM("sections", "testimonials", Astro.currentLocale))?.data ||
+  {};
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as TestimonialsSection;
+
+let {
+  enable = true,
+  title,
+  description,
+  subtitle,
+  ctaLabel,
+  testimonial,
+  stats = [],
+} = actualContent;
+
+if (!enable) return null;
+---
+
+<section class="bg-white py-20">
+  <div class="mx-auto max-w-5xl text-center">
+    <h2 class="mb-4 text-3xl font-extrabold text-[#15151b] md:text-4xl">
+      {title}
+    </h2>
+    {
+      description && (
+        <p
+          class="mx-auto mb-6 max-w-4xl text-base leading-relaxed text-gray-700 md:text-lg"
+          set:html={markdownify(description)}
+        />
+      )
+    }
+
+    {
+      ctaLabel && (
+        <a
+          href="#"
+          class="mt-3 inline-block font-semibold text-[#15151b] transition-colors hover:text-[#C20E30]">
+          {ctaLabel}
+        </a>
+      )
+    }
+  </div>
+
+  <h5 class="mt-8 text-center text-lg font-light text-gray-600 md:text-xl">
+    {subtitle}
+  </h5>
+
+  <!-- Testimonial -->
+  <div class="mx-auto mt-8 max-w-lg">
+    <div
+      class="rounded-3xl bg-[linear-gradient(180deg,_rgba(194,14,48,1)_0%,_rgba(224,79,105,1)_34%,_rgba(224,79,105,1)_71%,_rgba(194,14,48,1)_100%)] px-10 py-12 text-center text-white shadow-xl">
+      <p class="text-md md:text-md mb-8 leading-relaxed italic">
+        {testimonial?.quote}
+      </p>
+
+      <div class="mt-6">
+        <p class="text-lg font-semibold">{testimonial?.author}</p>
+        <p class="text-sm opacity-90">{testimonial?.role}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div
+    class="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-6 px-6 md:grid-cols-3">
+    {
+      stats.map((item) => (
+        <div class="rounded-2xl bg-[#E7E7E7] p-8 text-center shadow">
+          <h4 class="mb-3 text-xl font-extrabold text-[#C20E30] md:text-2xl">
+            {item.title}
+          </h4>
+          <p class="text-sm leading-relaxed text-gray-700 md:text-base">
+            {item.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

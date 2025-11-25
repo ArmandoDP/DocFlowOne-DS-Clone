@@ -1,0 +1,51 @@
+---
+import ImageCard from "@/components/cards/ImageCard.astro";
+
+export interface FeatureCard {
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  cards: FeatureCard[];
+  gridType?: "standard" | "mixed" | "documentManagement";
+  animations?: string[];
+}
+
+const {
+  cards,
+  gridType = "standard",
+  animations = ["reveal-anim-left", "reveal-anim-top", "reveal-anim-right"],
+} = Astro.props;
+
+const gridClasses = {
+  standard: "grid gap-5 md:grid-cols-3 rounded-2xl bg-[#15151b] p-8",
+  mixed:
+    "grid md:grid-cols-3 rounded-2xl p-10 bg-[#15151b] mx-auto justify-items-center",
+  documentManagement: "rounded-2xl bg-[#15151b] px-2 md:px-4 py-4",
+};
+---
+
+<div class={gridClasses[gridType]}>
+  {
+    cards.map((card, index) => (
+      <div
+        class:list={[
+          "group p-2 shadow-lg transition-transform duration-300 hover:-translate-y-2",
+          gridType === "mixed" && index === 1 && "md:col-span-2",
+        ]}
+        data-aos={animations[index % animations.length]}
+        data-aos-duration="1500">
+        <ImageCard src={card.src} alt={card.alt} index={index} class="mb-5" />
+        <h3 class="mb-3 text-lg font-bold text-white md:text-xl">
+          {card.title}
+        </h3>
+        <p class="text-sm leading-relaxed whitespace-pre-line text-gray-300 md:text-base">
+          {card.description}
+        </p>
+      </div>
+    ))
+  }
+</div>

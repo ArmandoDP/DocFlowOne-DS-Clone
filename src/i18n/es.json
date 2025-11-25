@@ -1,0 +1,21 @@
+{
+  "common": {
+    "viewDetails": "Ver Detalles",
+    "learnMoreAbout": "Aprende más sobre",
+    "paginationPrevious": "Anterior",
+    "paginationNext": "Siguiente",
+    "paginationPortfolioPrev": "Portafolio Anterior",
+    "paginationPortfolioNext": "Siguiente Portafolio"
+  },
+  "headerOffcanvas": {
+    "description": "Somos una agencia digital que ayuda a las empresas a crear experiencias inmersivas.",
+    "buttonLabel": "Hablemos con Nosotros"
+  },
+  "navigation": {
+    "buttonLabel": "Solicita tu demo"
+  },
+  "footer": {
+    "copyright": "Copyright © {{ year }} by your company / Crafted with [Getastrothemes](https://getastrothemes.com/)",
+    "_comment": "We kindly appreciate it if you retain the theme copyright. Thank you for supporting Getastrothemes!"
+  }
+}

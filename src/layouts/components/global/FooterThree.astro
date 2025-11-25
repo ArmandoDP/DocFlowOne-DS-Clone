@@ -1,90 +1,105 @@
 ---
-import { parseTomlToJson } from "@/lib/utils/tomlUtils";
 import { markdownify } from "@/lib/utils/textConverter";
-import { splitProtectedText } from "@/lib/utils/splitProtectedText";
-import SocialComponent from "@/components/widgets/Social.astro";
-import social from "@/config/social.json";
-import { useTranslations } from "@/lib/utils/i18nUtils";
 import { getEntryCTM } from "@/lib/customContentLoader.astro";
-import ContactForm from "../widgets/ContactForm.astro";
+import type { footerSectionSchema } from "@/sections.schema";
+import type { z } from "astro:content";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 
-const config = parseTomlToJson();
-const t = await useTranslations(Astro.currentLocale as string);
+type FooterSection = z.infer<typeof footerSectionSchema>;
 
-let {
-  copyright,
-  footerDescription,
-  contactInfo: { address, email, phone },
-} = config.settings;
-const { footerSpaceTop = true } = Astro.props;
+let { data: content } =
+  (await getEntryCTM("sections", "footer", Astro.currentLocale)) ?? {};
 
 const {
-  data: { title, description },
-} = await getEntryCTM("sections", "call-to-action", Astro.currentLocale);
+  enable = true,
+  top,
+  columns,
+  social = [],
+  bottom,
+} = (content || {}) as FooterSection;
 
-let { form } = (
-  await getEntryCTM("sections", "contact-section", Astro.currentLocale)
-)?.data;
-
-footerDescription = footerDescription || t("footer.description") || "";
-
-const copyrightText = copyright.text || t("footer.copyright") || "";
-const copyrightParts = splitProtectedText(copyrightText);
+if (!enable) return null;
 ---
 
-<footer
-  id="footer-with-contact"
-  class:list={["bg-accent", !footerSpaceTop && "mt-0"]}>
-  <div class="container pb-8 md:pb-16">
-    <div
-      class="grid grid-cols-1 gap-y-10 border-b-2 border-black py-16 md:py-24 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-10">
-      <div class="space-y-10">
-        {
-          title && (
-            <h2
-              class="text-display-6 xs:text-display-5 md:text-display-4"
-              set:html={markdownify(title)}
-            />
-          )
-        }
-        {
-          description && (
-            <div
-              class="w-full max-w-lg text-lg"
-              set:html={markdownify(description, true)}
-            />
-          )
-        }
-        <div class="space-y-4">
-          {
-            config.settings.copyright?.enable && (
-              <ul class="has-list has-list-slash prose-a:text-inherit flex flex-wrap gap-y-2">
-                {copyrightParts.map((value) => (
-                  <li class="prose-a:text-text-default/70 prose-a:hover:text-text-default">
-                    <span set:html={markdownify(value)} />
-                  </li>
-                ))}
-              </ul>
-            )
-          }
+<!-- TOP SECTION (franja negra testimonial) -->
+<section class="bg-[#0F1017] py-16 text-center text-white">
+  <h2 class="mb-4 text-3xl font-bold md:text-4xl">
+    {top.title}
+  </h2>
 
-          <SocialComponent
-            size="lg"
-            layout="dark"
-            class="gap-5"
-            linkType="follow"
-            list={social.main.filter((s) => s.enable)}
-          />
+  <p class="mx-auto mb-8 max-w-3xl text-lg opacity-90">
+    {top.description}
+  </p>
+
+  <a
+    href="#"
+    class="inline-block rounded-lg bg-[#4D5262] px-10 py-3 text-white transition hover:bg-[#5A5F70]">
+    {top.buttonLabel}
+  </a>
+</section>
+
+<!-- FOOTER INFERIOR -->
+<footer class="bg-[#F5F6F8] py-14 text-[#15151b]">
+  <div class="container mx-auto px-6">
+    <!-- LOGO + COLUMNS -->
+    <div class="mb-12 grid grid-cols-1 gap-10 md:grid-cols-4">
+      <!-- LOGO -->
+      <div>
+        <OptimizedImage
+          src="/src/assets/images/logo.png"
+          alt="DocSolutions"
+          class="mb-6 w-[180px]"
+        />
+
+        <!-- social icons -->
+        <div class="mt-4 flex gap-4">
+          {
+            social.map((s) => (
+              <a
+                href={s.url}
+                target="_blank"
+                class="flex h-10 w-10 items-center justify-center rounded-md bg-[#11131A] transition hover:opacity-75">
+                <i class={`bi bi-${s.icon} text-xl text-white`} />
+              </a>
+            ))
+          }
         </div>
       </div>
-      <ContactForm form={form} />
+
+      <!-- COLUMNS -->
+      {
+        columns.map((column) => (
+          <div>
+            <h4 class="mb-4 text-lg font-semibold">{column.title}</h4>
+
+            <ul class="space-y-3">
+              {column.links.map((l) => (
+                <li>
+                  <a
+                    href={l.url}
+                    class="text-sm text-[#15151b] transition hover:text-[#C20E30]">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
+
+    <!-- BOTTOM LINE -->
     <div
-      class="font-secondary flex flex-wrap items-center justify-between gap-x-8 gap-y-6 pt-6 text-sm leading-loose font-semibold uppercase">
-      {address && <p set:html={markdownify(address)} />}
-      <div class="md:text-end">
-        {phone && <p set:html={markdownify(phone)} />}
-        {email && <p set:html={markdownify(email)} />}
+      class="flex flex-col items-center justify-between border-t pt-6 text-sm md:flex-row">
+      <p>{bottom.copyright}</p>
+
+      <div class="mt-4 flex gap-8 md:mt-0">
+        <a href={bottom.privacyUrl} class="hover:text-[#C20E30]">
+          {bottom.privacy}
+        </a>
+        <a href={bottom.termsUrl} class="hover:text-[#C20E30]">
+          {bottom.terms}
+        </a>
       </div>
     </div>
   </div>

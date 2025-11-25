@@ -1,0 +1,68 @@
+---
+import type { LogoItem } from "../../../../data/logos";
+
+interface Props {
+  tools: LogoItem[];
+  speedMs?: number;
+}
+const { tools = [], speedMs = 100000 } = Astro.props as Props;
+---
+
+<div class="relative z-10 mx-auto overflow-hidden px-2 py-1 md:px-4 md:py-2">
+  <div
+    class="[mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+    <div
+      class="flex w-max translate-x-0 will-change-transform"
+      style={`animation: carousel-scroll ${speedMs}ms linear infinite`}>
+      {
+        [...tools, ...tools].map((tool) => (
+          <div class="group mx-8 flex min-w-[240px] flex-col items-center justify-center px-4 py-2 md:min-w-[160px]">
+            <div class="mb-1 flex h-36 w-36 items-center justify-center md:h-36 md:w-36 lg:h-40 lg:w-40">
+              <img
+                src={tool.logo}
+                alt={tool.name}
+                width="208"
+                height="208"
+                class="group-hover:filter-red h-full w-full object-contain filter-none transition duration-300 group-hover:scale-110"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes carousel-scroll {
+    0% {
+      transform: translateX(-20%);
+    }
+    100% {
+      transform: translateX(-70%);
+    }
+  }
+
+  /* Filtro rojo igual que antes */
+  .filter-red {
+    filter: brightness(0) invert(14%) sepia(95%) saturate(7491%)
+      hue-rotate(338deg) brightness(89%) contrast(119%);
+    transition:
+      filter 0.4s ease,
+      transform 0.3s ease;
+  }
+
+  /* En estado normal: sin filtro (color original) */
+  .filter-none {
+    filter: none;
+    transition:
+      filter 0.4s ease,
+      transform 0.3s ease;
+  }
+
+  /* Al hacer hover (o group-hover): se tiñe de rojo */
+  .group:hover .filter-none {
+    filter: brightness(0) invert(14%) sepia(95%) saturate(7491%)
+      hue-rotate(338deg) brightness(89%) contrast(119%);
+  }
+</style>

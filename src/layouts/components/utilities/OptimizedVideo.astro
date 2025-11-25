@@ -1,0 +1,83 @@
+---
+interface VideoProps {
+  src: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  controls?: boolean;
+  playsinline?: boolean;
+  preload?: "auto" | "metadata" | "none";
+  poster?: string;
+  width?: number | string;
+  height?: number | string;
+  type?: string;
+  class?: string;
+  style?: any;
+  [key: string]: any;
+}
+
+const {
+  src,
+  autoplay = true,
+  loop = true,
+  muted = true,
+  controls = false,
+  playsinline = true,
+  preload = "metadata",
+  poster,
+  width,
+  height,
+  type,
+  class: className,
+  style,
+  ...rest
+} = Astro.props;
+
+if (!src) {
+  throw new Error("No video source provided.");
+}
+
+const normalizedSrc = src.startsWith("/src/assets")
+  ? src
+  : src.startsWith("/")
+    ? `/src/assets${src}`
+    : src;
+
+const videos = import.meta.glob("/src/assets/videos/**/*.{mp4,webm,ogg}", {
+  eager: false,
+});
+
+const isLocal = !!videos[normalizedSrc];
+let videoSrc = src;
+
+if (isLocal) {
+  try {
+    const module = (await videos[normalizedSrc]()) as { default: string };
+    videoSrc = module.default;
+  } catch (err) {
+    console.error(`❌ Failed to load local video: ${normalizedSrc}`, err);
+  }
+} else if (!src.startsWith("http")) {
+  console.warn(
+    `⚠️ Video not found: ${normalizedSrc}. Make sure it exists in /src/assets/videos or provide a full URL.`,
+  );
+}
+---
+
+<video
+  src={videoSrc}
+  autoplay={autoplay}
+  loop={loop}
+  muted={muted}
+  controls={controls}
+  playsinline={playsinline}
+  preload={preload}
+  poster={poster}
+  width={width}
+  height={height}
+  class={className}
+  style={style}
+  {...rest}>
+  {type && <source src={videoSrc} type={type} />}
+  Tu navegador no soporta la etiqueta <code>video</code>.
+</video>

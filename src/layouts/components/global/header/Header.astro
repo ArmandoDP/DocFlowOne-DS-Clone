@@ -17,7 +17,7 @@ const isCategoryFilteredPage = ["/category/", "/tag/"].some((path) =>
 );
 
 const {
-  site: { logoAlternate },
+  site: { logo, logoAlternate },
   settings: { stickyHeader, navigationButton, headerOffcanvas },
 } = config;
 
@@ -38,70 +38,82 @@ const {
     { "has-sticky-behavior": stickyHeader || position === "fixed" },
     ClassName,
   ]}>
+  <div
+    class="flex w-full justify-end bg-[#1E2230] px-6 py-2 text-sm text-white">
+    <a href="#" class="hover:underline">Acceso a Clientes</a>
+  </div>
   <nav class="xl:container-12xl relative max-xl:container">
     <div
-      class="hs-dropdown relative flex items-center justify-between py-6 [--auto-close:inside] [--gpu-acceleration:false] [--strategy:absolute] lg:[--strategy:static]">
+      class="hs-dropdown relative flex items-center justify-between py-2 [--auto-close:inside] [--gpu-acceleration:false] [--strategy:absolute] lg:[--strategy:static]">
       {hasDarkBackground ? <Logo src={logoAlternate} /> : <Logo />}
 
       <!-- Navbar For Header -->
-      <Navbar />
+      <!-- <Navbar/> -->
 
       {/* Language Switcher For Small Devices */}
-      {
-        config.settings.multilingual.enable && !isCategoryFilteredPage && (
-          <div class="ms-auto me-4 flex lg:hidden">
-            <LanguageSwitcher
-              appearance={hasDarkBackground ? "light" : "dark"}
-            />
-          </div>
-        )
-      }
+      <div class="ml-auto flex items-center gap-6">
+        <!-- Navbar For Header -->
 
-      {/* Navigation Button For Large Devices */}
-      {
-        (navigationButton.enable || config.settings.multilingual.enable) && (
-          <div class="hidden gap-3.5 max-lg:ms-auto max-lg:me-4 lg:flex lg:items-center">
-            {config.settings.multilingual.enable && !isCategoryFilteredPage && (
+        <Navbar />
+
+        {
+          config.settings.multilingual.enable && !isCategoryFilteredPage && (
+            <div class="ms-auto me-4 flex lg:hidden">
               <LanguageSwitcher
                 appearance={hasDarkBackground ? "light" : "dark"}
               />
-            )}
-            {navigationButton.enable && (
-              <CustomButton
-                variant="fill"
-                label={t("navigation.buttonLabel")}
-                hoverEffect="creative-fill"
-                {...navigationButton}
-                class:list={[
-                  hasDarkBackground
-                    ? "btn-accent effect-color-dark"
-                    : "btn-primary effect-color-accent",
-                ]}
-              />
-            )}
-          </div>
-        )
-      }
+            </div>
+          )
+        }
 
-      {/* Desktop Sidebar Offcanvas Toggle Button */}
-      {
-        headerOffcanvas?.enable && (
-          <NavbarToggler
-            title="Open sidebar content"
-            appearance={hasDarkBackground ? "light" : "dark"}
-            isOffcanvasToggler={true}
-            class:list={[
-              "ring-primary/25 rounded-full duration-500 ease-out hover:ring-4",
-              hideOffcanvas ? "lg:hidden" : "",
-            ]}
-            aria-haspopup="dialog"
-            aria-expanded="false"
-            aria-controls="offcanvas-main"
-            data-hs-overlay="#offcanvas-main"
-            data-hs-overlay-options='{"emulateScrollbarSpace": true}'
-          />
-        )
-      }
+        {/* Navigation Button For Large Devices */}
+        {
+          (navigationButton.enable || config.settings.multilingual.enable) && (
+            <div class="hidden gap-3.5 max-lg:ms-auto max-lg:me-4 lg:flex lg:items-center">
+              {config.settings.multilingual.enable &&
+                !isCategoryFilteredPage && (
+                  <LanguageSwitcher
+                    appearance={hasDarkBackground ? "light" : "dark"}
+                  />
+                )}
+              {navigationButton.enable && (
+                <CustomButton
+                  class="px-6 text-xs font-medium"
+                  variant="fill"
+                  label={t("navigation.buttonLabel")}
+                  hoverEffect="creative-fill"
+                  {...navigationButton}
+                  class:list={[
+                    hasDarkBackground
+                      ? "btn-accent effect-color-dark"
+                      : "btn-primary effect-color-accent",
+                  ]}
+                />
+              )}
+            </div>
+          )
+        }
+
+        {/* Desktop Sidebar Offcanvas Toggle Button */}
+        <!-- {
+          headerOffcanvas?.enable && (
+            <NavbarToggler
+              title="Open sidebar content"
+              appearance={hasDarkBackground ? "light" : "dark"}
+              isOffcanvasToggler={true}
+              class:list={[
+                "ring-primary/25 rounded-full duration-500 ease-out hover:ring-4",
+                hideOffcanvas ? "lg:hidden" : "",
+              ]}
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="offcanvas-main"
+              data-hs-overlay="#offcanvas-main"
+              data-hs-overlay-options='{"emulateScrollbarSpace": true}'
+            />
+          )
+        } -->
+      </div>
     </div>
   </nav>
 </header>

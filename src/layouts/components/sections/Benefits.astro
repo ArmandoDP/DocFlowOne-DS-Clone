@@ -1,0 +1,106 @@
+---
+import type { Section } from "@/types";
+import type { z } from "astro:content";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/customContentLoader.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import type { BenefitsSectionSchema } from "@/sections.schema";
+import OptimizedImage from "../utilities/OptimizedImage.astro";
+import Carousel from "../cards/Carousel.astro";
+import { logos } from "../../../../data/logos";
+
+export type BenefitsSection = Section & z.infer<typeof BenefitsSectionSchema>;
+
+type Props = {
+  content?: BenefitsSection;
+};
+
+let defaultContent = (
+  await getEntryCTM("sections", "benefits", Astro.currentLocale)
+)?.data as BenefitsSection;
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as BenefitsSection;
+
+let { enable = true, title, benefits, description } = actualContent;
+
+// const isDarkAppearance = appearance === "dark";
+
+if (!enable) {
+  return null;
+}
+
+// console.log("Slug usado:", slug);
+// console.log("Archivo cargado:", defaultContent);
+
+// console.log("⚠️ Astro.currentLocale:", Astro.currentLocale);
+// console.log("⚠️ defaultContent:", defaultContent);
+// console.log("⚠️ actualContent:", actualContent);
+// console.log("⚠️ benefits:", benefits);
+
+if (!enable) return null;
+---
+
+<section class="bg-white py-10 text-black">
+  <div class="container">
+    {
+      title && (
+        <h2
+          class="mb-10 text-center text-4xl font-bold"
+          set:html={markdownify(title)}
+        />
+      )
+    }
+
+    {
+      description && (
+        <p
+          class="mx-auto mb-6 max-w-3xl text-center text-lg opacity-80"
+          set:html={markdownify(description)}
+        />
+      )
+    }
+
+    <div class="mx-auto max-w-6xl divide-y-2 divide-[#C20E30]">
+      <!-- Primera fila -->
+      <div class="grid grid-cols-1 gap-8 py-10 md:grid-cols-3">
+        {
+          benefits?.slice(0, 3).map((b) => (
+            <div class="flex flex-col items-start px-4">
+              <img
+                src={b.icon}
+                alt={b.title}
+                class="mb-4 h-16 w-16 object-contain"
+              />
+              <h3 class="mb-2 text-lg font-bold">{b.title}</h3>
+              <p class="text-base leading-relaxed text-gray-800">
+                {b.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Segunda fila -->
+      <div class="grid grid-cols-1 gap-8 py-10 md:grid-cols-3">
+        {
+          benefits?.slice(3, 6).map((b) => (
+            <div class="flex flex-col items-start px-4">
+              <img
+                src={b.icon}
+                alt={b.title}
+                class="mb-4 h-16 w-16 object-contain"
+              />
+              <h3 class="mb-2 text-lg font-bold">{b.title}</h3>
+              <p class="text-base leading-relaxed text-gray-800">
+                {b.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

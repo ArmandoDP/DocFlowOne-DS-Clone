@@ -3,7 +3,7 @@
 /* ====================================================== */
 
 @utility btn {
-  @apply font-secondary text-light inline-block overflow-hidden px-6 py-4 text-sm font-normal whitespace-nowrap uppercase disabled:cursor-not-allowed xl:px-9 xl:py-5;
+  @apply font-secondary text-light inline-block overflow-hidden rounded-lg px-6 py-4 text-sm font-normal whitespace-nowrap uppercase disabled:cursor-not-allowed xl:px-13 xl:py-4;
 }
 
 @utility btn-circle {
@@ -11,7 +11,11 @@
 }
 
 @utility btn-accent {
-  @apply bg-accent text-dark;
+  @apply text-light bg-[#C20E30];
+}
+
+@utility btn-dark {
+  @apply bg-[#C20E30] text-black;
 }
 
 @utility btn-primary {

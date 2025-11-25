@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton.astro";
 
 interface Props {
   isMobile?: boolean;
+  class?: string;
 }
 
 const config = parseTomlToJson();
@@ -15,7 +16,7 @@ const t = await useTranslations(Astro.currentLocale as string);
 let main = t("headerPrimary") as NavigationLink[];
 main = filteredEnabled(main);
 
-const { isMobile } = Astro.props;
+const { isMobile, class: className } = Astro.props;
 const { navigationButton } = config.settings;
 ---
 

@@ -18,7 +18,7 @@
 
   &.scroll-down.has-sticky-behavior.has-dark-background,
   &.scroll-up.has-sticky-behavior.has-dark-background {
-    @apply bg-black/80 backdrop-blur-lg;
+    @apply bg-white/130 backdrop-blur-lg;
   }
 
   /* Following Code Make Sticky Upwards */
@@ -64,10 +64,10 @@
 
   &.language-switcher-light {
     .language-switcher-button {
-      @apply border-light text-light;
+      @apply border-black text-black;
     }
     .language-switcher-dropdown li a {
-      @apply text-text-default hover:bg-accent hover:text-dark;
+      @apply text-text-default hover:text-dark hover:bg-[#C20E30];
     }
   }
 }
@@ -98,7 +98,7 @@
       @apply font-secondary text-text-default hover:bg-primary/5 hover:text-primary relative flex w-full items-center px-5 py-3 text-sm font-normal uppercase transition duration-300;
 
       &.nav-link-active {
-        @apply max-lg:text-accent;
+        @apply max-lg:text-[#C20E30];
       }
     }
   }
@@ -158,7 +158,7 @@
 /* Dark Header Variant */
 .header.has-dark-background {
   .nav-link {
-    @apply text-light hover:text-accent;
+    @apply text-black hover:text-[#C20E30];
   }
 }
 

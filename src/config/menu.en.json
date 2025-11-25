@@ -2,22 +2,22 @@
   "headerPrimary": [
     {
       "enable": true,
-      "name": "Home",
+      "name": "Solutions",
       "url": "/"
     },
     {
       "enable": true,
-      "name": "Services",
+      "name": "Company",
       "url": "/#services"
     },
     {
-      "enable": true,
-      "name": "Projects",
+      "enable": false,
+      "name": "Projets",
       "url": "/#projects"
     },
     {
-      "enable": true,
-      "name": "Pricing",
+      "enable": false,
+      "name": "Tarifs",
       "url": "/#pricing"
     }
   ]

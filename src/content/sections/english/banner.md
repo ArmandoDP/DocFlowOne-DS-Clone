@@ -1,18 +1,26 @@
 ---
-# For Updating Contact Info Like Email, Phone Number, Address, etc. Please update in `src/config/config.toml` `settings.contactInfo` table
+# Pour mettre à jour les informations de contact comme email, téléphone, adresse, etc., merci de modifier la table `settings.contactInfo` dans `src/config/config.toml`
 
-enable: true # Control the visibility of this section across all pages where it is used
-titleSize: "display-2" # If your title text is larger, use a smaller text size like "display-3", "display-2", or "display-1".
-title: "We Help to Grow <br /> Your Business"
+enable: true # Controls the visibility of this section on all pages where it is used
+titleSize: "display-3" # If your title is longer, use a smaller text size like "display-3", "display-2" or "display-1"
+title: "Automate, digitize, and optimize your operational processes with DocFlow One®"
 
 image: "/images/banner/startup.png"
-description: "We are digital agency that helps businesses develop immersive and engaging user experiences that drive top level growth"
+video:
+  enable: true
+  src: "/videos/VideoDocFlowOneCorto-3.mp4"
+  autoplay: true
+  loop: true
+  muted: true
+  playsinline: true
+
+description: "Digitize and automate your entire document operation so your team works efficiently and your clients enjoy a better experience."
 
 button:
   # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
-  enable: false
-  label: "VIEW OUR WORKS"
-  url: "/"
+  enable: true
+  label: "Discover how it works"
+  url: "/docflowone"
   # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
   # variant: "" # Optional: fill | outline | text | circle
   # rel: "" # Optional

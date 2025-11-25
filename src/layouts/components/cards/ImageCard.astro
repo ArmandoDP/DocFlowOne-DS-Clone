@@ -1,0 +1,42 @@
+---
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+
+type Props = {
+  src: string;
+  alt?: string;
+  index?: number; // para alternar AOS como antes
+  class?: string;
+};
+
+const { src, alt = "", index = 0, class: className } = Astro.props;
+
+// mismo mapeo que usabas antes
+const anim = ["reveal-anim-left", "reveal-anim-right", "reveal-anim-top"][
+  index % 3
+];
+---
+
+<div
+  class:list={[
+    "group", // <- activa hover en hijos
+    "flex flex-col items-start justify-start",
+    className,
+  ]}>
+  <a
+    title={alt}
+    class="order-1 mb-8 inline-block w-full overflow-hidden"
+    data-aos={anim}
+    data-aos-duration="1500">
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      class:list={[
+        // <- EXACTAMENTE lo que tenías:
+        "h-full w-full object-cover transition duration-500",
+        "group-hover:translate-x-2", // se desplaza a la derecha en hover del contenedor
+        "will-change-transform",
+      ]}
+      loading="lazy"
+    />
+  </a>
+</div>

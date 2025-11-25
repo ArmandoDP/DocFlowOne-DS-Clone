@@ -1,0 +1,498 @@
+---
+import ImageCard from "@/components/cards/ImageCard.astro";
+import SectionTitle from "./SectionTitle.astro";
+import FeatureGrid from "./FeatureGrid.astro";
+import type { Section } from "@/types";
+import type { z } from "astro:content";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/customContentLoader.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import type { DocflowOneSectionSchema } from "@/sections.schema";
+import OptimizedImage from "../utilities/OptimizedImage.astro";
+import Carousel from "../cards/Carousel.astro";
+import { logos } from "../../../../data/logos";
+
+export type DocflowOneSection = Section &
+  z.infer<typeof DocflowOneSectionSchema>;
+
+type Props = {
+  content?: DocflowOneSection;
+};
+
+let defaultContent = (
+  await getEntryCTM("sections", "docflow-one", Astro.currentLocale)
+)?.data as DocflowOneSection;
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as DocflowOneSection;
+
+let { enable = true, title, intro, ctaLabel, sections = [] } = actualContent;
+
+// const isDarkAppearance = appearance === "dark";
+
+if (!enable) {
+  return null;
+}
+
+// Helpers: buscar secciones por id
+const getSection = (id: string) => sections.find((s) => s.id === id);
+
+const automation = getSection("automatizacion");
+const onboarding = getSection("onboarding");
+const firmaDigital = getSection("firma-digital");
+const gestionDocumental = getSection("gestion-documental");
+const identidadDigital = getSection("identidad-digital");
+
+// Animaciones reutilizadas
+const ANIMATIONS = {
+  threeColumn: ["reveal-anim-left", "reveal-anim-top", "reveal-anim-right"],
+  twoColumn: ["reveal-anim-left", "reveal-anim-right"],
+};
+
+// console.log("Slug usado:", slug);
+// console.log("Archivo cargado:", defaultContent);
+
+// console.log("⚠️ Astro.currentLocale:", Astro.currentLocale);
+// console.log("⚠️ defaultContent:", defaultContent);
+// console.log("⚠️ actualContent:", actualContent);
+// console.log("⚠️ benefits:", benefits);
+
+// Configuración de imágenes principales
+// const MAIN_IMAGES = {
+//   computer1: "/src/assets/images/docflowone/computadora1.png",
+//   computer2: "/src/assets/images/docflowone/computadora2.png",
+//   documentReport: "/src/assets/images/docflowone/reporte-documental.png",
+//   mobileWrapper: "/src/assets/images/docflowone/mobile-mockup-wrapper.png",
+//   multiWrapper: "/src/assets/images/docflowone/multimedia-wrapper-1.png",
+//   multiWrapper2: "/src/assets/images/docflowone/Frame-78.png",
+//   mobileMockup: "/src/assets/images/docflowone/MockUp-Credenciales-1.png",
+//   aiIcon: "/src/assets/images/docflowone/IA-icon.png"
+// };
+
+// // Configuración de animaciones
+// const ANIMATIONS = {
+//   threeColumn: ["reveal-anim-left", "reveal-anim-top", "reveal-anim-right"],
+//   twoColumn: ["reveal-anim-left", "reveal-anim-right"]
+// };
+
+// const cards = [
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-1.png",
+//     alt: "Orquestación de flujos",
+//     title: "Orquestación de flujos",
+//     description: `El Diseñador de Flujos “Drag & Drop” permite configurar recorridos de principio a fin sin necesidad de programar.
+//     Para funcionalidades avanzadas, se pueden habilitar scripts.
+//     Esto permite a los equipos adaptar procesos e integraciones con auténtica agilidad empresarial.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-2.png",
+//     alt: "Compliance by design",
+//     title: "Compliance by design",
+//     description: `Las funciones de IA operan dentro de las pautas de privacidad y los estándares ISO/IEC 42001,
+//     lo que garantiza la trazabilidad y auditabilidad de cada decisión algorítmica.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-3.png",
+//     alt: "Automatización",
+//     title: "Automatización",
+//     description: `Aumenta la productividad y eficiencia, mejora los flujos de trabajo y reduce el tiempo en tareas administrativas,
+//     incrementando la eficiencia operativa. Al automatizar procesos rutinarios, también disminuyes la posibilidad de errores
+//     y aceleras la toma de decisiones.`,
+//   },
+// ];
+
+// const cards2 = [
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-4.png",
+//     alt: "Cumplimiento normativo",
+//     title: "Cumplimiento normativo",
+//     description: `Reduce el fraude por suplantación y simplifica el cumplimiento CNBV, KYC, PLD.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-5.png",
+//     alt: "Pasos simples, solución integral",
+//     title: "Pasos simples, solución integral",
+//     description: `Mejora la experiencia de tus usuarios con un onboarding en pocos minutos.`,
+//   }
+// ];
+
+// const cards3 = [
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-6.png",
+//     alt: "Firma digital con IA",
+//     title: "Firma digital con IA",
+//     description: `El módulo de firma digital integra IA para consultar, resumir y validar documentos antes o después de la firma, mediante un chatbot interactivo que asegura procesos más ágiles, precisos y confiables.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-7.png",
+//     alt: "Fiabilidad",
+//     title: "Fiabilidad",
+//     description: `Asegura plena validez jurídica bajo la NOM-151, garantizando cada firma digital con tres atributos esenciales:
+
+// • Atribución: Confirma y vincula inequívocamente cada firma digital a una persona específica.
+
+// • Accesibilidad: Ofrece acceso inmediato y seguro al documento firmado para todas las partes involucradas.
+
+// • Integridad: Garantiza que el documento firmado permanece intacto y sin alteraciones a través del tiempo.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-8.png",
+//     alt: "Funcionalidades",
+//     title: "Funcionalidades",
+//     description: `Optimiza integralmente el proceso de firma electrónica mediante funcionalidades avanzadas y seguras:
+
+// • Gestión y configuración completa del flujo documental y expedientes.
+
+// • Firma electrónica simple y avanzada, con edición colaborativa y validación mediante biometría y geolocalización.
+
+// • Analítica detallada y validación ante entidades como el SAT, con tableros administrativos y API’s para integración fluida con otros sistemas.`,
+//   },
+// ];
+
+// const cards4 = [
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-9.png",
+//     alt: "Modulo de gestión documental",
+//     title: "Modulo de gestión documental",
+//     description: `Administración de archivos y control de expedientes físicos o digitales durante todo su ciclo de vida, asegurando cumplimiento normativo.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-10.png",
+//     alt: "OCR",
+//     title: "OCR",
+//     description: `Reconocimiento automático de texto para la captura precisa de información documental.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-11.png",
+//     alt: "Trazabilidad",
+//     title: "Trazabilidad",
+//     description: `Control y seguimiento detallado para procesos de auditoría.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-12.png",
+//     alt: "Vigencias",
+//     title: "Vigencias",
+//     description: `Administración y monitoreo de fechas límite y vigencias documentales.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-13.png",
+//     alt: "Gestión de usuarios",
+//     title: "Gestión de usuarios",
+//     description: `Administración segura y estructurada de los accesos y permisos de usuarios.`,
+//   },
+// ]
+
+// const cards5 = [
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-14.png",
+//     alt: "Credenciales digitales",
+//     title: "Credenciales digitales",
+//     description: `Protege el acceso de tus usuarios contra el phishing y el robo de identidad con Binaria Key. Facilita la gestión de identidades en tu entorno organizacional, eliminando la fricción de crear nuevas cuentas. Fortalece la seguridad digital sin contraseñas.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-15.png",
+//     alt: "Blockchain",
+//     title: "Blockchain",
+//     description: `La integridad de cada autenticación digital se garantiza con una prueba criptográfica de validez que se almacena de forma inmutable en Blockchain.`,
+//   },
+//   {
+//     src: "/src/assets/images/docflowone/icon-wrapper-16.png",
+//     alt: "Certificados digitales",
+//     title: "Certificados digitales",
+//     description: `Emite y verifica certificados digitales para reconocer logros, comprobar estudios y otorgar licencias, méritos, cédulas, certificaciones, diplomas o membresías dentro y fuera de tu organización. Mejora la credibilidad y reputación de tus usuarios en el entorno digital.`,
+//   },
+// ];
+---
+
+<section id="projects" class="bg-[#1C1E26]">
+  <!-- BLOQUE PRINCIPAL HEADER -->
+  <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-1">
+    <div
+      class="rounded-3xl bg-[#15151b] p-10 text-center shadow-lg transition-transform duration-200 hover:-translate-y-1">
+      <h3 class="mb-4 text-3xl font-bold text-white md:text-4xl">
+        {title || "¿Cómo funciona DocFlow One"}<sup>®</sup>?
+      </h3>
+      {
+        intro && (
+          <p class="mx-auto mb-4 max-w-3xl text-base leading-relaxed text-white md:text-lg">
+            {intro}
+          </p>
+        )
+      }
+      {
+        ctaLabel && (
+          <a
+            href="#"
+            class="font-base mt-4 inline-block rounded-full px-6 py-3 text-sm text-white transition-colors hover:text-[#C20E30]">
+            {ctaLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- ========================== SECCIÓN 1: AUTOMATIZACIÓN ========================== -->
+  {
+    automation && (
+      <>
+        <SectionTitle
+          title={automation.title}
+          subtitle={automation.subtitle || ""}
+        />
+
+        <div class="container space-y-14 py-16">
+          {automation.images && automation.images.length >= 2 && (
+            <div class="space-y-10 gap-x-20 lg:columns-2">
+              <ImageCard
+                src={automation.images[0]}
+                alt={automation.title}
+                index={0}
+              />
+              <ImageCard
+                src={automation.images[1]}
+                alt={automation.title}
+                index={1}
+              />
+            </div>
+          )}
+
+          {automation.cards && automation.cards.length > 0 && (
+            <FeatureGrid
+              cards={automation.cards.map((c) => ({
+                src: c.icon,
+                alt: c.title,
+                title: c.title,
+                description: c.description,
+              }))}
+              gridType="standard"
+              animations={ANIMATIONS.threeColumn}
+            />
+          )}
+        </div>
+      </>
+    )
+  }
+
+  <!-- ========================== SECCIÓN 2: ONBOARDING ========================== -->
+  {
+    onboarding && (
+      <>
+        <SectionTitle
+          title={onboarding.title}
+          subtitle={onboarding.subtitle || ""}
+          hasAI={!!onboarding.aiIcon}
+          aiIcon={onboarding.aiIcon}
+        />
+
+        <div class="container space-y-14 py-16">
+          {onboarding.images && onboarding.images.length >= 2 && (
+            <div class="mt-10 flex items-center justify-center gap-6">
+              <div class="w-auto max-w-[400px]">
+                <ImageCard
+                  src={onboarding.images[0]}
+                  alt={onboarding.title}
+                  index={0}
+                  class="w-full"
+                />
+              </div>
+              <div class="w-auto max-w-[600px]">
+                <ImageCard
+                  src={onboarding.images[1]}
+                  alt={onboarding.title}
+                  index={1}
+                  class="w-full"
+                />
+              </div>
+            </div>
+          )}
+
+          {onboarding.cards && onboarding.cards.length > 0 && (
+            <FeatureGrid
+              cards={onboarding.cards.map((c) => ({
+                src: c.icon,
+                alt: c.title,
+                title: c.title,
+                description: c.description,
+              }))}
+              gridType="mixed"
+              animations={ANIMATIONS.twoColumn}
+            />
+          )}
+        </div>
+      </>
+    )
+  }
+
+  <!-- ========================== SECCIÓN 3: FIRMA DIGITAL ========================== -->
+  {
+    firmaDigital && (
+      <>
+        <SectionTitle
+          title={firmaDigital.title}
+          subtitle={firmaDigital.subtitle || ""}
+          hasAI={!!firmaDigital.aiIcon}
+          aiIcon={firmaDigital.aiIcon}
+        />
+
+        <div class="container space-y-14 py-16">
+          {firmaDigital.images && firmaDigital.images.length >= 1 && (
+            <div class="mt-10 flex items-center justify-center gap-6">
+              <div class="w-auto max-w-full">
+                <ImageCard
+                  src={firmaDigital.images[0]}
+                  alt={firmaDigital.title}
+                  index={0}
+                  class="w-full"
+                />
+              </div>
+            </div>
+          )}
+
+          {firmaDigital.cards && firmaDigital.cards.length > 0 && (
+            <FeatureGrid
+              cards={firmaDigital.cards.map((c) => ({
+                src: c.icon,
+                alt: c.title,
+                title: c.title,
+                description: c.description,
+              }))}
+              gridType="standard"
+              animations={ANIMATIONS.threeColumn}
+            />
+          )}
+        </div>
+      </>
+    )
+  }
+
+  <!-- ========================== SECCIÓN 4: GESTIÓN DOCUMENTAL ========================== -->
+  {
+    gestionDocumental && (
+      <>
+        <SectionTitle
+          title={gestionDocumental.title}
+          subtitle={gestionDocumental.subtitle || ""}
+          hasAI={!!gestionDocumental.aiIcon}
+          aiIcon={gestionDocumental.aiIcon}
+        />
+
+        <div class="container space-y-14 py-16">
+          {gestionDocumental.images && gestionDocumental.images.length >= 1 && (
+            <div class="mt-10 flex items-center justify-center gap-6">
+              <div class="w-auto max-w-full">
+                <ImageCard
+                  src={gestionDocumental.images[0]}
+                  alt={gestionDocumental.title}
+                  index={0}
+                  class="w-full"
+                />
+              </div>
+            </div>
+          )}
+
+          <div class="rounded-2xl bg-[#15151b] px-2 py-4 md:px-4">
+            {gestionDocumental.cardsTop &&
+              gestionDocumental.cardsTop.length > 0 && (
+                <div class="mx-auto grid max-w-6xl gap-1 md:grid-cols-3">
+                  {gestionDocumental.cardsTop.map((card, index) => (
+                    <div
+                      class="flex flex-col items-start rounded-xl p-4 transition-transform duration-300 hover:-translate-y-2"
+                      data-aos={
+                        [
+                          "reveal-anim-left",
+                          "reveal-anim-top",
+                          "reveal-anim-right",
+                        ][index % 3]
+                      }>
+                      <div class="w-full">
+                        <ImageCard
+                          src={card.icon}
+                          alt={card.title}
+                          index={index}
+                        />
+                      </div>
+                      <h3 class="mb-3 text-lg font-bold text-white md:text-xl">
+                        {card.title}
+                      </h3>
+                      <p class="text-sm leading-relaxed whitespace-pre-line text-gray-300 md:text-base">
+                        {card.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+            {gestionDocumental.cardsBottom &&
+              gestionDocumental.cardsBottom.length > 0 && (
+                <div class="mx-auto grid max-w-3xl gap-6 md:grid-cols-2">
+                  {gestionDocumental.cardsBottom.map((card, index) => (
+                    <div
+                      class="flex flex-col items-start rounded-xl p-2 transition-transform duration-300 hover:-translate-y-2"
+                      data-aos={
+                        ["reveal-anim-left", "reveal-anim-right"][index % 2]
+                      }>
+                      <div class="w-full">
+                        <ImageCard
+                          src={card.icon}
+                          alt={card.title}
+                          index={index + 3}
+                        />
+                      </div>
+                      <h3 class="mb-3 text-lg font-bold text-white md:text-xl">
+                        {card.title}
+                      </h3>
+                      <p class="text-sm leading-relaxed whitespace-pre-line text-gray-300 md:text-base">
+                        {card.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  <!-- ========================== SECCIÓN 5: IDENTIDAD DIGITAL ========================== -->
+  {
+    identidadDigital && (
+      <>
+        <SectionTitle
+          title={identidadDigital.title}
+          subtitle={identidadDigital.subtitle || ""}
+        />
+
+        <div class="container space-y-14 py-12">
+          {identidadDigital.images && identidadDigital.images.length >= 1 && (
+            <div class="mt-10 flex items-center justify-center gap-6">
+              <div class="w-auto max-w-full">
+                <ImageCard
+                  src={identidadDigital.images[0]}
+                  alt={identidadDigital.title}
+                  index={0}
+                  class="w-full"
+                />
+              </div>
+            </div>
+          )}
+
+          {identidadDigital.cards && identidadDigital.cards.length > 0 && (
+            <FeatureGrid
+              cards={identidadDigital.cards.map((c) => ({
+                src: c.icon,
+                alt: c.title,
+                title: c.title,
+                description: c.description,
+              }))}
+              gridType="standard"
+              animations={ANIMATIONS.threeColumn}
+            />
+          )}
+        </div>
+      </>
+    )
+  }
+</section>

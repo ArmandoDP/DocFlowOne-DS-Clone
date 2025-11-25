@@ -1,0 +1,24 @@
+{
+  "headerPrimary": [
+    {
+      "enable": true,
+      "name": "Soluciones",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Empresa",
+      "url": "/#services"
+    },
+    {
+      "enable": false,
+      "name": "Projets",
+      "url": "/#projects"
+    },
+    {
+      "enable": false,
+      "name": "Tarifs",
+      "url": "/#pricing"
+    }
+  ]
+}
