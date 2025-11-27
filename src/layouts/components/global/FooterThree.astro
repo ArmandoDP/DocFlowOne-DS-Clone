@@ -22,33 +22,38 @@ if (!enable) return null;
 ---
 
 <!-- TOP SECTION (franja negra testimonial) -->
-<section class="bg-[#0F1017] py-16 text-center text-white">
-  <h2 class="mb-4 text-3xl font-bold md:text-4xl">
+<section
+  class="flex flex-col items-center justify-center bg-[#1C1E26] py-16 text-center text-white">
+  <p
+    class="text-md mx-8 mb-4 font-light text-white md:max-w-2xl md:text-2xl"
+    data-aos="reveal-anim-top"
+    data-aos-duration="2000">
     {top.title}
-  </h2>
-
-  <p class="mx-auto mb-8 max-w-3xl text-lg opacity-90">
     {top.description}
   </p>
-
   <a
     href="#"
-    class="inline-block rounded-lg bg-[#4D5262] px-10 py-3 text-white transition hover:bg-[#5A5F70]">
+    class="inline-block rounded-lg bg-[#4D5262] px-16 py-3 text-sm text-white transition hover:bg-[#5A5F70] md:text-lg"
+    data-aos="reveal-anim-top"
+    data-aos-duration="2000">
     {top.buttonLabel}
   </a>
 </section>
 
 <!-- FOOTER INFERIOR -->
-<footer class="bg-[#F5F6F8] py-14 text-[#15151b]">
-  <div class="container mx-auto px-6">
+<footer
+  class="bg-[#F5F6F8] py-14 text-[#15151b]"
+  data-aos="reveal-anim-top"
+  data-aos-duration="2000">
+  <div class="container mx-auto px-8">
     <!-- LOGO + COLUMNS -->
     <div class="mb-12 grid grid-cols-1 gap-10 md:grid-cols-4">
       <!-- LOGO -->
       <div>
         <OptimizedImage
-          src="/src/assets/images/logo.png"
+          src="/src/assets/images/doc-logo.png"
           alt="DocSolutions"
-          class="mb-6 w-[180px]"
+          class="mb-6 -ml-2 w-[180px]"
         />
 
         <!-- social icons -->
@@ -58,8 +63,12 @@ if (!enable) return null;
               <a
                 href={s.url}
                 target="_blank"
-                class="flex h-10 w-10 items-center justify-center rounded-md bg-[#11131A] transition hover:opacity-75">
-                <i class={`bi bi-${s.icon} text-xl text-white`} />
+                class="flex h-10 w-10 items-center justify-center rounded-md transition hover:opacity-75">
+                <OptimizedImage
+                  src={s.src}
+                  alt={s.icon}
+                  class="h-full w-full"
+                />
               </a>
             ))
           }
@@ -70,7 +79,7 @@ if (!enable) return null;
       {
         columns.map((column) => (
           <div>
-            <h4 class="mb-4 text-lg font-semibold">{column.title}</h4>
+            <h4 class="mb-4 text-lg font-light">{column.title}</h4>
 
             <ul class="space-y-3">
               {column.links.map((l) => (

@@ -22,3 +22,14 @@
   @import "./navigation.css";
   @import "./components.css";
 }
+
+/* Ocultar scrollbar pero mantener el scroll */
+::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+html,
+body {
+  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none; /* Firefox */
+}

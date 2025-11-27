@@ -218,6 +218,7 @@ export const footerSectionSchema = z.object({
       z.object({
         icon: z.string(),
         url: z.string(),
+        src: z.string(),
       }),
     )
     .optional(),

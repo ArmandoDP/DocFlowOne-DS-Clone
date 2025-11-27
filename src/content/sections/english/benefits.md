@@ -1,5 +1,6 @@
 ---
 subject: "Key Benefits"
+title: "Key Benefits"
 
 benefits:
   - icon: "../src/assets/images/benefits/icon1.png"

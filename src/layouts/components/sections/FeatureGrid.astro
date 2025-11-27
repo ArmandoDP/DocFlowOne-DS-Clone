@@ -33,13 +33,13 @@ const gridClasses = {
     cards.map((card, index) => (
       <div
         class:list={[
-          "group p-2 shadow-lg transition-transform duration-300 hover:-translate-y-2",
+          "group p-2 shadow-lg transition-transform",
           gridType === "mixed" && index === 1 && "md:col-span-2",
         ]}
         data-aos={animations[index % animations.length]}
         data-aos-duration="1500">
         <ImageCard src={card.src} alt={card.alt} index={index} class="mb-5" />
-        <h3 class="mb-3 text-lg font-bold text-white md:text-xl">
+        <h3 class="mb-3 text-lg font-medium text-white md:text-xl">
           {card.title}
         </h3>
         <p class="text-sm leading-relaxed whitespace-pre-line text-gray-300 md:text-base">

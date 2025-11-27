@@ -1,5 +1,6 @@
 ---
 subject: "Avantages clés"
+title: "Avantages clés"
 
 benefits:
   - icon: "../src/assets/images/benefits/icon1.png"

@@ -25,10 +25,13 @@ columns:
 
 social:
   - icon: "linkedin"
+    src: "/src/assets/images/footer/linked-icon.svg"
     url: "https://linkedin.com"
   - icon: "facebook"
+    src: "/src/assets/images/footer/facebook-icon.svg"
     url: "https://facebook.com"
   - icon: "youtube"
+    src: "/src/assets/images/footer/youtube-icon.svg"
     url: "https://youtube.com"
 
 bottom:

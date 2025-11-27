@@ -14,12 +14,12 @@ video:
   muted: true
   playsinline: true
 
-description: "Numérisez et automatisez toute votre gestion documentaire afin que votre équipe travaille efficacement et que vos clients bénéficient d’une meilleure expérience."
+description: "DocFlow One® est une plateforme complète qui permet aux organisations de numériser, automatiser et faire évoluer leurs processus métier, tout en garantissant la traçabilité documentaire et en renforçant la sécurité et la conformité réglementaire."
 
 button:
   # Consultez le schéma `sharedButton` dans `src/sections.schema.ts` pour toutes les options de configuration disponibles (ex. enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
   enable: true
-  label: "Découvrez comment cela fonctionne"
+  label: "Demandez votre démo"
   url: "/docflowone"
   # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
   # variant: "" # Optional: fill | outline | text | circle

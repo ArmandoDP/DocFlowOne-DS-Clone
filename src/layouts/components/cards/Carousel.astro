@@ -8,7 +8,10 @@ interface Props {
 const { tools = [], speedMs = 100000 } = Astro.props as Props;
 ---
 
-<div class="relative z-10 mx-auto overflow-hidden px-2 py-1 md:px-4 md:py-2">
+<div
+  class="relative z-10 mx-auto overflow-hidden px-2 py-1 md:px-4 md:py-2"
+  data-aos="reveal-anim-top"
+  data-aos-duration="2000">
   <div
     class="[mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
     <div
@@ -16,8 +19,8 @@ const { tools = [], speedMs = 100000 } = Astro.props as Props;
       style={`animation: carousel-scroll ${speedMs}ms linear infinite`}>
       {
         [...tools, ...tools].map((tool) => (
-          <div class="group mx-8 flex min-w-[240px] flex-col items-center justify-center px-4 py-2 md:min-w-[160px]">
-            <div class="mb-1 flex h-36 w-36 items-center justify-center md:h-36 md:w-36 lg:h-40 lg:w-40">
+          <div class="group mx-3 flex min-w-[20px] flex-col items-center justify-center px-2 py-2 md:min-w-[160px]">
+            <div class="mb-1 flex h-24 w-24 items-center justify-center md:h-36 md:w-36 lg:h-40 lg:w-40">
               <img
                 src={tool.logo}
                 alt={tool.name}

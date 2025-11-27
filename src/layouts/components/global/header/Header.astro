@@ -45,7 +45,13 @@ const {
   <nav class="xl:container-12xl relative max-xl:container">
     <div
       class="hs-dropdown relative flex items-center justify-between py-2 [--auto-close:inside] [--gpu-acceleration:false] [--strategy:absolute] lg:[--strategy:static]">
-      {hasDarkBackground ? <Logo src={logoAlternate} /> : <Logo />}
+      {
+        hasDarkBackground ? (
+          <Logo src={logoAlternate} class="h-auto w-56 md:w-full" />
+        ) : (
+          <Logo />
+        )
+      }
 
       <!-- Navbar For Header -->
       <!-- <Navbar/> -->

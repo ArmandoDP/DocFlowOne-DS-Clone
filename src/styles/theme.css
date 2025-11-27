@@ -35,7 +35,7 @@
   --text-display-1: calc(var(--text-base) * pow(var(--text-base-scale), 8.8)); /* 115px  */
   --text-display-2: calc(var(--text-base) * pow(var(--text-base-scale), 6)); /* 95px  */
   --text-display-3: calc(var(--text-base) * pow(var(--text-base-scale), 7.25)); /* 80px  */
-  --text-display-4: calc(var(--text-base) * pow(var(--text-base-scale), 3.5)); /* 65px  */
+  --text-display-4: calc(var(--text-base) * pow(var(--text-base-scale), 3.0)); /* 65px  */
   --text-display-5: calc(var(--text-base) * pow(var(--text-base-scale), 2.5)); /* 50px  */
   --text-display-6: calc(var(--text-base) * pow(var(--text-base-scale), 1.5)); /* 40px  */
 

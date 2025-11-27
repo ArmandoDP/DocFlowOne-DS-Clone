@@ -32,9 +32,7 @@ const anim = ["reveal-anim-left", "reveal-anim-right", "reveal-anim-top"][
       alt={alt}
       class:list={[
         // <- EXACTAMENTE lo que tenías:
-        "h-full w-full object-cover transition duration-500",
-        "group-hover:translate-x-2", // se desplaza a la derecha en hover del contenedor
-        "will-change-transform",
+        "h-full w-full origin-center transform object-cover transition duration-500 will-change-transform group-hover:scale-105",
       ]}
       loading="lazy"
     />

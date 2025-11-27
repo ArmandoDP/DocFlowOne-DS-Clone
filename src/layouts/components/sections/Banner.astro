@@ -39,24 +39,24 @@ let { title, image, titleSize, description, button, video } =
 const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
   "display-1": "text-display-3 lg:text-display-2 xl:text-display-1",
   "display-2": "text-display-5 md:text-display-3 xl:text-display-2",
-  "display-3": "text-display-5 md:text-display-4 xl:text-display-3",
+  "display-3": "text-display-6 md:text-display-4 xl:text-display-4",
 };
 
-const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
+const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-3"];
 ---
 
-<section class="mb-24 bg-white pt-52 text-black md:mb-32">
+<section class="mb-24 bg-white pt-42 text-black md:mb-32">
   <div class="container">
-    <div class="mx-auto max-w-7xl space-y-7 text-center md:space-y-10">
+    <div class="mx-auto max-w-4xl space-y-7 text-center md:space-y-4">
       {
         title && (
           <h1
             data-aos="reveal-anim-top"
             data-aos-duration="2000"
             class:list={[
-              "text-inherit",
+              "mx-auto text-inherit",
               fontSize,
-              "block leading-tight font-bold break-words text-inherit",
+              "block leading-tight font-medium break-words text-inherit",
             ]}
             set:html={markdownify(title)}
           />
@@ -68,18 +68,19 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
             data-aos="reveal-anim-top"
             data-aos-duration="1500"
             data-aos-delay="200"
-            class="mx-auto max-w-2xl space-y-6">
+            class="mx-4 max-w-4xl space-y-4 md:mx-auto">
             {description && (
               <p
-                class="text-lg text-inherit opacity-80"
+                class="text-sm text-inherit opacity-80 md:text-lg"
                 set:html={markdownify(description)}
               />
             )}
             {button && button.enable && (
               <CustomButton
                 hoverEffect="creative-fill"
-                class="btn-accent 9 mx-auto"
+                class="btn-accent 9 mx-auto px-16 text-xs md:px-24 md:text-lg"
                 {...button}
+                class:list={"btn-accent effect-color-dark"}
               />
             )}
           </div>
@@ -110,7 +111,7 @@ const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
               loop={video.loop}
               muted={video.muted}
               playsinline={video.playsinline}
-              class="w-full rounded-lg border-4 border-white/20 shadow-lg"
+              class="w-full rounded-4xl border-4 border-white/20 shadow-lg"
             />
           </div>
         )
