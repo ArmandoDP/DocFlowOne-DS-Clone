@@ -1,9 +1,9 @@
-import Icon1 from "../src/assets/images/benefits/icon1.png";
-import Icon2 from "../src/assets/images/benefits/icon2.png";
-import Icon3 from "../src/assets/images/benefits/icon3.png";
-import Icon4 from "../src/assets/images/benefits/icon4.png";
-import Icon5 from "../src/assets/images/benefits/icon5.png";
-import Icon6 from "../src/assets/images/benefits/icon6.png";
+import Icon1 from "/benefits/icon1.png";
+import Icon2 from "/benefits/icon2.png";
+import Icon3 from "/benefits/icon3.png";
+import Icon4 from "/benefits/icon4.png";
+import Icon5 from "/benefits/icon5.png";
+import Icon6 from "/benefits/icon6.png";
 
 export const benefits = [
   {

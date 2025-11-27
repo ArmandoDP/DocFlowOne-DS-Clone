@@ -37,7 +37,7 @@ sections:
 
   - id: "onboarding"
     title: "Digital onboarding +"
-    aiIcon: "/src/assets/images/docflowone/IA-icon.png"
+    aiIcon: "/docflowone/IA-icon.png"
     subtitle: "Enable remote onboarding for clients and employees, reducing time and errors."
     images:
       - "/src/assets/images/docflowone/mobile-mockup-wrapper.png"
@@ -53,7 +53,7 @@ sections:
 
   - id: "firma-digital"
     title: "Digital signature +"
-    aiIcon: "/src/assets/images/docflowone/IA-icon.png"
+    aiIcon: "/docflowone/IA-icon.png"
     subtitle: "Allows the secure and legally valid authentication and signing of documents."
     images:
       - "/src/assets/images/docflowone/multimedia-wrapper-1.png"
@@ -82,7 +82,7 @@ sections:
 
   - id: "gestion-documental"
     title: "Document management +"
-    aiIcon: "/src/assets/images/docflowone/IA-icon.png"
+    aiIcon: "/docflowone/IA-icon.png"
     subtitle: "Centralizes and organizes documents with traceability and regulatory compliance."
     images:
       - "/src/assets/images/docflowone/Frame-78.png"
