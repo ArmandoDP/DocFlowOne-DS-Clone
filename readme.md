@@ -1,61 +1,44 @@
-> ⭐️ Love this theme? Star it to support our work!
+# 🚀 DocFlow One® — Plataforma Integral de Digitalización, Automatización y Gestión Documental
 
-# 🚀 Folex Lite Astro — Free Startup & Agency Astro Theme
+**DocFlow One®** es una plataforma empresarial diseñada para digitalizar, automatizar y escalar procesos operativos en organizaciones de todos los tamaños, garantizando trazabilidad documental, seguridad operativa y cumplimiento normativo.
 
-**Folex Lite** is a lightweight, free version of the premium [Folex Astro Theme](https://getastrothemes.com/astro-themes/folex/), designed for fast, SEO-friendly startup and digital agency websites.
+Construida bajo principios de robustez, escalabilidad y modularidad, DocFlow One® integra módulos avanzados como:
 
-> ⚡ Built with Astro 5, Tailwind CSS 4, and Markdown — optimized for performance, SEO, and simplicity.
+Automatización de procesos (BPMN + IA)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/getastrothemes/folex-lite-astro) [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/getastrothemes/folex-lite-astro) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/getastrothemes/folex-lite-astro?devcontainer_path=.devcontainer/devcontainer.json)
+Onboarding digital + validaciones biométricas
 
-![Folex Lite Banner](/public/images/og-image.jpg)
+Firma digital con validez jurídica NOM-151
 
-## ✨ Features at a Glance
+Gestión Documental avanzada (ECM/DMS)
 
-- ✅ Homepage layout: Startup / Agency
+Identidad digital y credenciales verificables
+
+Integraciones empresariales vía API
+
+DocFlow One® impulsa la operación de corporativos líderes en sectores altamente regulados como banca, seguros, gobierno, automotriz y telecomunicaciones.
+
+![DocFlow One® Banner](/public/images/og-image.jpg)
+
+## ✨ Características principales
+
+- 🧠 Flujos automatizados Drag & Drop
+  Configura procesos sin programar y habilita scripts para lógica avanzada.
 - ✅ Built with Astro 5 + Tailwind CSS 4
-- ✅ Fully responsive and accessible
-- ✅ 100/100 Lighthouse performance score
-- ✅ SEO-ready: meta tags, Open Graph, JSON-LD schema
-- ✅ Minimal but tasteful built-in animations
-- ✅ Easily deploy to Vercel, Netlify, or Cloudflare Pages
-- ✅ Edit all content using Markdown
-- ✅ Contact form integration support (Formspree, Formsubmit, Netlify)
-
-## 🔄 Lite vs. Pro — Feature Comparison
-
-| Feature                                                       | Folex Lite | Folex Pro 💎 |
-| ------------------------------------------------------------- | ---------- | ------------ |
-| Homepage – Startup/Agency                                     | ✅         | ✅           |
-| Creative/Digital/Portfolio Homepages                          | ❌         | ✅           |
-| Fully Multilingual (i18n) Support                             | ✅         | ✅           |
-| SEO Optimized (Meta + OpenGraph + JSON-LD)                    | ✅         | ✅           |
-| 100/100 Lighthouse Score                                      | ✅         | ✅           |
-| Deployment Ready (Vercel, Netlify, Cloudflare)                | ✅         | ✅           |
-| Accessible & Responsive Design                                | ✅         | ✅           |
-| Minimal Animations                                            | ✅         | ✅           |
-| Premium Scroll & Hover Animations                             | ❌         | ✅           |
-| Markdown Content Support                                      | ✅         | ✅           |
-| Built-in Contact Form Support                                 | ✅         | ✅           |
-| Creative UI Components (Tabs, Accordions, Testimonials, etc.) | ❌         | ✅           |
-| Pre-built Pages: About, FAQ, Services, Pricing, etc.          | ❌         | ✅           |
-| Blog System (with Markdown & Schema)                          | ❌         | ✅           |
-| Projects/Portfolio Section                                    | ❌         | ✅           |
-| Mega Menu Navigation                                          | ❌         | ✅           |
-| Enhanced Footer (Newsletter, Links, Policies)                 | ❌         | ✅           |
-| Terms & Privacy Pages (Auto-generated)                        | ❌         | ✅           |
-
-> 🎯 **Need more pages and flexibility?**  
-> Upgrade to [Folex Pro →](https://getastrothemes.com/astro-themes/folex/) for the full business-ready toolkit.
-
-## ⚡ Quick Start
-
-```bash
-git clone https://github.com/getastrothemes/folex-lite-astro.git
-cd folex-lite-astro
-npm install
-npm run dev
-```
+- 🔐 Cumplimiento normativo
+  Operación alineada a estándares ISO/IEC 42001, NOM-151, KYC, CNBV y PLD.
+- 📄 Firma digital con IA
+  Chatbot inteligente para lectura, análisis y validación de documentos antes de firmar.
+- 📂 Gestión documental centralizada
+  Control de expedientes físicos y digitales, OCR, auditoría y trazabilidad.
+- 🪪 Identidad digital y biometría
+  Validación de identidad para fortalecer procesos de acceso y credenciales digitales.
+- 📊 Analítica y reportes
+  Métricas para seguimiento de cumplimiento, eficiencia y operación.
+- 🔌 Integraciones ágiles vía API
+  Conexión con CRMs, ERPs, servicios de firma, biometría, bancos de datos y más.
+- 📱 Interfaz moderna, segura y accesible
+  Diseñada para escalar y adaptarse a cualquier flujo empresarial.
 
 ## 🚀 Project Structure
 
@@ -89,53 +72,51 @@ Inside of your Astro project, you'll see the following folders and files:
 └── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🧞 Internacionalización (i18n)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+El proyecto incluye soporte multilenguaje:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollectionCTM()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Español (es)
 
-Any static assets, like images, can be placed in the `public/` directory.
+Inglés (en)
 
-## 🧞 Commands
+Francés (fr)
 
-All commands are run from the root of the project, from a terminal:
+Todo el contenido se gestiona en src/i18n/ y archivos .md traducidos.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🏗️ Arquitectura y Tecnologías
 
-## 🚀 One-Click Deployment
+Astro 5
 
-Deploy the Folex Lite Astro theme instantly to your favorite platform:
+Tailwind CSS 4
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/getastrothemes/folex-lite-astro)
+TypeScript
 
-## 👀 Want to learn more?
+Markdown & MDX
 
-Full usage, customization, and deployment guide:
+IA e Integración API-ready
 
-[Theme Documentation](https://docs.getastrothemes.com/folex/) · [Astro Documentation](https://docs.astro.build) · [Astro Discord server](https://astro.build/chat)
+Optimización para SEO, accesibilidad y rendimiento
 
-## 📄 License
+## 🔒 Seguridad y Cumplimiento
 
-Folex Lite is free for personal and commercial use under the [Getastrothemes Free Theme License.](LICENSE.md)
+DocFlow One® está diseñado para sectores regulados:
 
-✅ Attribution appreciated but not required. You may optionally include a visible link to [getastrothemes.com](https://getastrothemes.com) in your site footer or credits section.
+Trazabilidad completa de todas las operaciones
 
-## 💬 Feedback & Suggestions
+Control de accesos, roles y permisos
 
-If you enjoy using Folex Lite or have ideas to improve it:
+Validación biométrica y antifraude
 
-📣 [Give Feedback](https://getastrothemes.com/contact/)
+Auditoría registrada
 
-## 🛠 Credits
+Cumplimiento normativo (KYC, CNBV, PLD, NOM-151)
 
-Made with ❤️ by [Getastrothemes](https://getastrothemes.com/)
+## 📄 Licencia
 
-Folex Lite is inspired by the premium [Folex Pro Theme](https://getastrothemes.com/astro-themes/folex/)
+Proyecto privado y propiedad intelectual de DocSolutions.
+Queda estrictamente prohibida la reproducción, distribución o uso no autorizado.
+
+## ❤️ Reconocimientos
+
+DocFlow One® es desarrollado y mantenido con dedicación por el equipo de DocSolutions.
