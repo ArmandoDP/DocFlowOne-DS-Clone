@@ -1,7 +1,7 @@
 # Site Configuration
 [site]
   title            = "DocSolutions" # Shared title for SEO and OpenGraph
-  description      = "A highly customizable creative agency business theme built with Tailwind CSS and Astro Js" # Shared description for SEO and OpenGraph
+  description      = "DocFlow One® digitaliza y automatiza procesos empresariales con trazabilidad y cumplimiento seguro." # Shared description for SEO and OpenGraph
   tagline          = "DocFlow One"
   taglineSeparator = "" # default is " - "
   baseUrl          = "https://folex-lite-astro.vercel.app/" # Base URL for the site and used in OpenGraph meta tags.

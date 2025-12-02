@@ -12,10 +12,6 @@
     "template",
     "tailwindcss"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/getastrothemes/folex-lite-astro.git"
-  },
   "engines": {
     "node": ">=18.20.8 <19 || >=20.3.0 <21 || >=22.0.0",
     "npm": ">=9.6.7",
